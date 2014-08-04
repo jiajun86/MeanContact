@@ -1,0 +1,50 @@
+<div id="contacts">
+    <header>
+        <div id="filter">
+            <label>Show me:</label>
+            <select ng-model="selectedType" ng-options="type as type for type in typeFilters">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <button id="showForm" ng-click="addForm = !addForm">Add new contact</button>
+
+        <form id="addContact" action="#" ng-show="addForm">
+            <label for="photo">Photo:</label><input id="photo" type="file"/>
+            <label for="name">Name:</label><input id="name" ng-model="name"/>
+            <label for="type">Type:</label><input id="type" ng-model="type"/>
+            <label for="address">Address:</label><input id="address" ng-model="address"/>
+            <label for="tel">Tel:</label><input id="tel" ng-model="tel"/>
+            <label for="email">Email:</label><input id="email" ng-model="email"/>
+            <button type="button" id="add" ng-click="addContact()">Add</button>
+        </form>
+    </header>
+
+    <article class="contact-container" ng-repeat="contact in contacts|filter: selectedType track by $index">
+        <form action="#" ng-show="editForm">
+            <input type="file" value="/images/placeholder.png">
+            <input class="name" value="{{contact.name}}" ng-model="contact.name">
+            <select ng-model="contact.type" ng-options="type as type for type in typeFilters" ng-change="changeType(contact.type)" ng-hide="addType">
+                <option value=""><em>Add new...</em></option>
+            </select>
+            <input class="type" ng-model="contact.newType" ng-show="addType"/>
+            <input class="address" value="{{contact.address}}" ng-model="contact.address">
+            <input class="tel" value="{{contact.tel}}" ng-model="contact.tel">
+            <input class="email" value="{{contact.email}}" ng-model="contact.email">
+            <button type="button" class="save" ng-click="editForm = false; addType = false; editContact(contact)">Save</button>
+            <button type="button" class="cancel" ng-click="editForm = false; addType = false; cancel()">Cancel</button>
+        </form>
+
+        <div ng-hide="editForm">
+            <img src="/images/placeholder.png" alt="{{contact.name}}">
+            <h1>{{contact.name}}<span>{{contact.type}}</span></h1>
+            <div>{{contact.address}}</div>
+            <dl>
+                <dt>Tel:</dt><dd>{{contact.tel}}</dd>
+                <dt>Email:</dt><dd><a href="mailto:anemail@me.com">{{contact.email}}</a></dd>
+            </dl>
+            <button class="delete" ng-click="removeContact(contact)">Delete</button>
+            <button class="edit" ng-click="editForm = !editForm">Edit</button>
+        </div>
+    </article>
+</div>
