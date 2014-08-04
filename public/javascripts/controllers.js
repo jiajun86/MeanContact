@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module('app.controllers', []).
-controller('ContactsController', ['$scope', 'ContactService', function($scope, ContactService) {
+controller('ContactController', ['$scope', 'ContactService', function($scope, ContactService) {
     $scope.contacts = getContactList();
 
     $scope.addContact = function() {
@@ -58,9 +58,4 @@ controller('ContactsController', ['$scope', 'ContactService', function($scope, C
             });
         });
     }
-}]).
-controller('ContactController', ['$scope', '$routeParams', 'ContactService', function($scope, $routeParams, ContactService) {
-    $scope.contact = ContactService.get({
-        id: $routeParams.id
-    });
 }]);

@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
     });
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function(req, res) {
     console.log(111, "put /contacts/" + req.params.id + " - update contact");
     contacts.update({
         _id: new mongo.BSONPure.ObjectID(req.params.id)
@@ -50,10 +50,9 @@ router.put('/:id', function(req, res, next) {
     }, function(err, updatedContact) {
         res.json(updatedContact);
     });
-    //    res.json("put /contacts/" + req.params.id);
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', function(req, res) {
     console.log(111, "delete /contacts/" + req.params.id + " - delete contact");
     contacts.remove({
         _id: new mongo.BSONPure.ObjectID(req.params.id)
