@@ -23,7 +23,7 @@ You must have MongoDB installed. You can get them from [http://www.mongodb.org/]
 
 ### Clone MeanContact
 
-Clone the MeanContact repository using [git][git]:
+Clone the MeanContact repository using [git](https://git-scm.com/):
 
 ```
 git clone https://github.com/jiajun86/MeanContact.git
